@@ -48,7 +48,9 @@ function handleDrop(e) {
 
 	// this line is going to move the dragged piece from the left side of the board
 	// into whatever drop zone we choose. appendChild means "add element to the container"
-	this.appendChild(draggedPiece);
+	if(this.children.length === 0 &&draggedPiece) {
+		this.appendChild(draggedPiece);
+	}
 }
 // step 2
 // event handling always goes at the bottom => 
