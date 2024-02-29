@@ -11,9 +11,11 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 	puzzleBoard = document.querySelector(".puzzle-board"),
 	puzzlePieces = document.querySelectorAll(".puzzle-pieces img"),
 	dropZones = document.querySelectorAll('.drop-zone'),
+	butReset = document.querySelector('#resetBut'),
 	// store the dragged piece in a global variable
 	// because we need it in the handleDrop function
 	draggedPiece;
+
 
 // step 3
 // functionality always goes in the middle -> how do we want
@@ -25,7 +27,15 @@ function changeBGImage() {
 	// and updating the background-image style of the puzzle board element.
 
 	// bug fix #2 should go here. it's at most 3 lines of JS code.
+	boardReset();
 	puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
+}
+
+function boardReset() {
+    puzzlePieces.forEach(function(piece) {
+        puzzleBoard.appendChild(piece);
+        document.querySelector(".puzzle-pieces").appendChild(piece);
+    });
 }
 
 function handleStartDrag() { 
@@ -71,3 +81,5 @@ dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
 
 // add the drop event handling
 dropZones.forEach(zone => zone.addEventListener("drop", handleDrop));
+
+butReset.addEventListener("click", boardReset);
